@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), MainView {
 
     private fun setUpToolBar() {
         setSupportActionBar(toolBar)
-        supportActionBar?.title = "Welcome"
+        supportActionBar?.title = "Welcome to ${getString(R.string.app_name)}"
     }
 
     private fun setUpPresenter() {

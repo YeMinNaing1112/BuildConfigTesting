@@ -31,10 +31,38 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    flavorDimensions "food-delivery-app-flavor"
+
+    productFlavors {
+        //key
+        def ENDPOINT_FIELD = "ENDPOINT"
+        def APP_NAME_FIELD="app_name"
+
+        //Value
+        def ENDPOINT_FOOD_PANDA = "\"https://cf5e9727-974b-4d47-8df7-4c8aacc56a37.mock.pstmn.io\""
+        def ENDPOINT_GRAB = "\"https://9faee6bc-09cd-4aa0-9dac-e36c5aed3317.mock.pstmn.io\""
+
+        def APP_NAME_GRAB="Grab"
+        def APP_NAME_FOOD_PANDA="Food Panda"
+
+
+        foodPanda {
+            applicationIdSuffix ".foodpanda"
+            buildConfigField "String", ENDPOINT_FIELD, ENDPOINT_FOOD_PANDA
+            resValue "string",APP_NAME_FIELD,APP_NAME_FOOD_PANDA
+        }
+
+        grab {
+            applicationIdSuffix ".grab"
+            buildConfigField "String", ENDPOINT_FIELD, ENDPOINT_GRAB
+            resValue "string",APP_NAME_FIELD,APP_NAME_GRAB
+        }
+    }
 }
 
 dependencies {
-    implementation project(path : ':shared')
+    implementation project(path: ':shared')
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
