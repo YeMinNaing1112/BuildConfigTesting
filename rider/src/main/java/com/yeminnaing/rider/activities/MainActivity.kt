@@ -1,7 +1,12 @@
-package com.yeminnaing.rider
+package com.yeminnaing.rider.activities
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.PendingIntent
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.messaging.FirebaseMessaging
+import com.yeminnaing.rider.R
+import com.yeminnaing.rider.sendNotification
 import com.yeminnaing.shared.showSnackBar
 
 class MainActivity : AppCompatActivity() {
@@ -10,6 +15,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         showSnackBar("This is rider app")
 
-        sendNotification(this,"The Eminence in Shadow is a Japanese light novel series written by Daisuke Aizawa and illustrated by Tōzai. It began serialization online in May 2018 on the user-generated novel publishing website Shōsetsuka ni Narō. It was later acquired by Enterbrain, who have published the series since November 2018. ", "Hello")
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+             Log.d("firebase_token", it.result)
+        }
+
     }
 }
